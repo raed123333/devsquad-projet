@@ -1,4 +1,4 @@
-package edu.iset.atelierSpringBoot;
+package edu.iset.atelierSpringBoot.entites;
 
 import java.io.Serializable;
 import jakarta.persistence.Entity;
@@ -19,9 +19,46 @@ public class Employee implements Serializable {
  private String email;
  private String cin;
  private int age;
+ private String genre;
  private String numPhone;
- private String image;
  private String poste;
+ private boolean etat = false; 
+ private String password;
+ 
+ 
+ public String getPassword() {
+	return password;
+}
+
+
+public void setPassword(String password) {
+	this.password = password;
+}
+
+private String icon; 
+
+
+public void setIcon(String genre) {
+    if ("Homme".equalsIgnoreCase(genre)) {
+        this.icon = "icon-homme";
+    } else if ("Femme".equalsIgnoreCase(genre)) {
+        this.icon = "icon-femme";
+    } else {
+        this.icon = "icon-default";
+    }
+}
+public String getIcon() {
+    return this.icon; // Returns the automatically set icon
+}
+
+ 
+ public boolean isEtat() {
+     return etat;
+ }
+
+ public void setEtat(boolean etat) {
+     this.etat = etat;
+ }
 
  // Getters and Setters
 
@@ -80,15 +117,6 @@ public class Employee implements Serializable {
  public void setNumPhone(String numPhone) {
      this.numPhone = numPhone;
  }
-
- public String getImage() {
-     return image;
- }
-
- public void setImage(String image) {
-     this.image = image;
- }
-
  public String getPoste() {
      return poste;
  }
@@ -97,19 +125,21 @@ public class Employee implements Serializable {
      this.poste = poste;
  }
 
- @Override
- public String toString() {
-     return "Employee{" +
-             "id=" + id +
-             ", nom='" + nom + '\'' +
-             ", prenom='" + prenom + '\'' +
-             ", email='" + email + '\'' +
-             ", cin='" + cin + '\'' +
-             ", age=" + age +
-             ", numPhone='" + numPhone + '\'' +
-             ", image='" + image + '\'' +
-             ", poste='" + poste + '\'' +
-             '}';
- }
+
+
+@Override
+public String toString() {
+	return "Employee [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", cin=" + cin + ", age="
+			+ age + ", genre=" + genre + ", numPhone=" + numPhone + ", poste=" + poste + ", etat=" + etat
+			+ ", password=" + password + ", icon=" + icon + "]";
+}
+
+public String getGenre() {
+	return genre;
+}
+
+public void setGenre(String genre) {
+	this.genre = genre;
+}
 }
 

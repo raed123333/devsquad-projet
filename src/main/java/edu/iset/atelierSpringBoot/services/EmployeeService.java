@@ -1,6 +1,8 @@
-package edu.iset.atelierSpringBoot;
+package edu.iset.atelierSpringBoot.services;
 
 import java.util.List;
+
+import edu.iset.atelierSpringBoot.entites.Employee;
 
 public interface EmployeeService {
  List<Employee> getAllEmployees();
@@ -8,4 +10,6 @@ public interface EmployeeService {
  Employee addEmployee(Employee employee);
  Employee updateEmployee(Employee employee);
  void deleteEmployee(Long id);
+Employee registerEmployee(Employee employee);
+Employee getProfile(Long id);
 }

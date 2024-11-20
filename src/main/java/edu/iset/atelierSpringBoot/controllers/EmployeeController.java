@@ -1,68 +1,103 @@
-package edu.iset.atelierSpringBoot;
+package edu.iset.atelierSpringBoot.controllers;
 
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+import edu.iset.atelierSpringBoot.entites.Employee;
+import edu.iset.atelierSpringBoot.repositories.IEmployeeRepository;
+import edu.iset.atelierSpringBoot.services.EmployeeService;
+
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/Employee") // localhost:8089/Employee
+@RequestMapping("/Employee") 
 @CrossOrigin(origins = "http://localhost:5173")  // Enable CORS for frontend
 public class EmployeeController {
 
     @Autowired
-    EmployeeService employeeService;
-
+    private EmployeeService employeeService;
+    @Autowired
+    private IEmployeeRepository employeeRepository; 
+ 
+    // Get all employees
     @GetMapping(path = "/getAllEmployees")
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
-
+    
+    @PostMapping("/register")
+    public Employee registerEmployee(@RequestBody Employee employee) {
+        return employeeService.registerEmployee(employee);
+    }
+    
+    // Get employee by ID
     @GetMapping("/{id}")
     public Employee findEmployeeById(@PathVariable Long id) {
         return employeeService.findEmployeeById(id);
     }
 
+    // Create new employee
     @PostMapping
     public Employee createEmployee(@RequestBody Employee employee) {
         return employeeService.addEmployee(employee);
     }
 
+    // Update employee details
     @PutMapping("/edit/{id}")
     public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
         employee.setId(id);
         return employeeService.updateEmployee(employee);
     }
 
+    // Delete employee
     @DeleteMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
         return "Employee with ID " + id + " was deleted";
     }
+    @GetMapping("/profile/{id}")
+    public ResponseEntity<Employee> getProfile(@PathVariable Long id) {
+        Optional<Employee> employee = employeeRepository.findById(id);
+        if (employee.isPresent()) {
+            Employee existingEmployee = employee.get();
+            
+            // Log the password to check if it's being retrieved
+            System.out.println("Employee Profile: " + existingEmployee);
 
-    @PostMapping("/upload")
-    public Employee uploadEmployeeImage(@RequestParam("id") Long id, @RequestParam("file") MultipartFile file) {
-        try {
-            // Set the path where files will be stored
-            String folder = "uploads/";
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(folder + file.getOriginalFilename());
-            Files.write(path, bytes);
+            return ResponseEntity.ok(existingEmployee);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        }
 
-            // Update the image path for the employee
-            Employee employee = employeeService.findEmployeeById(id);
-            if (employee != null) {
-                employee.setImage(path.toString());
-                return employeeService.updateEmployee(employee);
-            } else {
-                throw new RuntimeException("Employee not found");
+    @PutMapping("/profile/{id}")
+    public ResponseEntity<Employee> updateProfile(@PathVariable Long id, @RequestBody Employee updatedEmployee) {
+        Optional<Employee> employee = employeeRepository.findById(id);
+        if (employee.isPresent()) {
+            Employee existingEmployee = employee.get();
+
+            // Update allowed fields
+            existingEmployee.setNom(updatedEmployee.getNom());
+            existingEmployee.setPrenom(updatedEmployee.getPrenom());
+            existingEmployee.setEmail(updatedEmployee.getEmail());
+            existingEmployee.setAge(updatedEmployee.getAge());
+            existingEmployee.setNumPhone(updatedEmployee.getNumPhone());
+
+            // Allow password change
+            if (updatedEmployee.getPassword() != null && !updatedEmployee.getPassword().isEmpty()) {
+                existingEmployee.setPassword(updatedEmployee.getPassword());
             }
-        } catch (IOException e) {
-            throw new RuntimeException("File upload error: " + e.getMessage());
+
+            // Save and return response
+            employeeRepository.save(existingEmployee);
+            return ResponseEntity.ok(existingEmployee);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
+    
 }

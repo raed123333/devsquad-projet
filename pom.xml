@@ -42,17 +42,21 @@
     <groupId>com.mysql</groupId>
     <artifactId>mysql-connector-j</artifactId>
 		</dependency>
+       
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
-			<groupId>edu.iset</groupId>
-			<artifactId>edu.iset.atelierSpringBoot-1</artifactId>
+			<groupId>com.example</groupId>
+			<artifactId>edu.iset.atelier3</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
