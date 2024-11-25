@@ -16,7 +16,17 @@ public class EmployeeServiceImpl implements EmployeeService {
  private IEmployeeRepository employeeRepo;
  //@Autowired
  //private PasswordEncoder passwordEncoder;
-
+ @Override
+ public Employee validateEmployee(Long id) {
+     Optional<Employee> employeeOpt = employeeRepo.findById(id);
+     if (employeeOpt.isPresent()) {
+         Employee employee = employeeOpt.get();
+         employee.setEtat(true);
+         return employeeRepo.save(employee);
+     } else {
+         throw new RuntimeException("Employee not found");
+     }
+ }
  @Override
  public Employee registerEmployee(Employee employee) {
      // Hash the password provided by the user

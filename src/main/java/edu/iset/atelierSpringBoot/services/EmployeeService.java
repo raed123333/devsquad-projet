@@ -12,4 +12,6 @@ public interface EmployeeService {
  void deleteEmployee(Long id);
 Employee registerEmployee(Employee employee);
 Employee getProfile(Long id);
+Employee validateEmployee(Long id);
+
 }

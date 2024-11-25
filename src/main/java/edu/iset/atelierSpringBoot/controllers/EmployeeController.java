@@ -98,6 +98,17 @@ public class EmployeeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-
+    @PutMapping("/validate/{id}")
+    public ResponseEntity<Employee> validateEmployee(@PathVariable Long id) {
+        Optional<Employee> employeeOpt = employeeRepository.findById(id);
+        if (employeeOpt.isPresent()) {
+            Employee employee = employeeOpt.get();
+            employee.setEtat(true); // Mark the employee as validated
+            employeeRepository.save(employee);
+            return ResponseEntity.ok(employee);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
     
 }
