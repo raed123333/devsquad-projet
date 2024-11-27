@@ -21,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      Optional<Employee> employeeOpt = employeeRepo.findById(id);
      if (employeeOpt.isPresent()) {
          Employee employee = employeeOpt.get();
-         employee.setEtat(true);
+         //employee.setEtat(true);
          return employeeRepo.save(employee);
      } else {
          throw new RuntimeException("Employee not found");
@@ -34,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     //employee.setPassword(hashedPassword);
 	 employee.setPassword(employee.getPassword());
      // Mark the employee as inactive by default
-     employee.setEtat(false);
+     //employee.setEtat(false);
 
      // Save the employee to the database
      return employeeRepo.save(employee);
@@ -69,12 +69,13 @@ public class EmployeeServiceImpl implements EmployeeService {
  }
 
  @Override
- public void deleteEmployee(Long id) {
+ public boolean deleteEmployee(Long id) {
      if (employeeRepo.existsById(id)) {
          employeeRepo.deleteById(id);
      } else {
          System.out.println("Error in delete function");
      }
+     return false;
  }
 
  public Optional<Employee> findByEmail(String email) {
