@@ -1,0 +1,94 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Nom -->
+    <EditText
+        android:id="@+id/nameField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nom"
+        android:inputType="textPersonName" />
+
+    <!-- Prénom -->
+    <EditText
+        android:id="@+id/prenomField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/pr_nom"
+        android:inputType="textPersonName" />
+
+    <!-- Email -->
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
+
+    <!-- CIN -->
+    <EditText
+        android:id="@+id/cinField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/cin"
+        android:inputType="text" />
+
+    <!-- Age -->
+    <EditText
+        android:id="@+id/ageField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Âge"
+        android:inputType="number" />
+
+    <!-- Genre -->
+    <EditText
+        android:id="@+id/genreField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Genre"
+        android:inputType="text" />
+
+    <!-- Numéro de téléphone -->
+    <EditText
+        android:id="@+id/phoneField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Numéro de téléphone"
+        android:inputType="phone" />
+
+    <!-- Poste -->
+    <EditText
+        android:id="@+id/posteField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Poste"
+        android:inputType="text" />
+
+    <!-- Mot de passe -->
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mot de passe"
+        android:inputType="textPassword" />
+
+    <!-- Icône (facultatif) -->
+    <EditText
+        android:id="@+id/iconField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Icône"
+        android:inputType="text" />
+
+    <!-- Bouton d'inscription -->
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="S'inscrire" />
+</LinearLayout>
