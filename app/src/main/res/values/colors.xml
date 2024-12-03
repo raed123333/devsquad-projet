@@ -8,9 +8,11 @@
     <color name="teal_700">#018786</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
-
+    <color name="forsignup">#007FFF</color>
     <!-- Couleurs personnalisées -->
-    <color name="backgroundColor">#F9F9F9</color> <!-- Couleur de fond -->
-    <color name="buttonColor">#2196F3</color> <!-- Couleur des boutons -->
+    <color name="primaryColor">#2196F3</color> <!-- Couleur principale -->
+    <color name="secondaryTextColor">#757575</color> <!-- Texte secondaire -->
     <color name="primaryTextColor">#333333</color> <!-- Texte principal -->
+    <color name="buttonColor">#2196F3</color> <!-- Couleur des boutons -->
+    <color name="backgroundColor">#F9F9F9</color> <!-- Couleur de fond -->
 </resources>

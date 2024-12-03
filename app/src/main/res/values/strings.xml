@@ -8,4 +8,8 @@
     <string name="pr_nom">Prénom</string>
     <string name="nom">Nom</string>
     <string name="cin">CIN</string>
+    <string name="gender_icon">g1\n</string>
+    <string name="welcoming">Welcome to CheckInPro! Your ultimate companion for seamless check-ins and effortless management. Sign up now to streamline your experience and stay organized like never before. Let’s get started!</string>
+    <string name="t">Create your account to get started</string>
+    <string name="last_name">Last Name</string>
 </resources>

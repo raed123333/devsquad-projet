@@ -1,98 +1,338 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#E6F7FF"
     android:padding="16dp">
 
-    <!-- Nom -->
-    <EditText
-        android:id="@+id/nameField"
-        android:layout_width="match_parent"
+    <!-- Welcome Text -->
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/nom"
-        android:inputType="textPersonName" />
+        android:text="Welcome"
+        android:textSize="22sp"
+        android:textColor="#007FFF"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
 
-    <!-- Prénom -->
-    <EditText
-        android:id="@+id/prenomField"
-        android:layout_width="match_parent"
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/subtitleText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/pr_nom"
-        android:inputType="textPersonName" />
+        android:text="Create your account to get started"
+        android:textSize="12sp"
+        android:textColor="#808080"
+        app:layout_constraintTop_toBottomOf="@id/welcomeText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
 
-    <!-- Email -->
-    <EditText
-        android:id="@+id/emailField"
-        android:layout_width="match_parent"
+    <!-- Signup Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/signupCard"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        android:backgroundTint="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/subtitleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
 
-    <!-- CIN -->
-    <EditText
-        android:id="@+id/cinField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/cin"
-        android:inputType="text" />
-
-    <!-- Age -->
-    <EditText
-        android:id="@+id/ageField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Âge"
-        android:inputType="number" />
-
-    <!-- Genre (Radio buttons for F and M) -->
-    <RadioGroup
-        android:id="@+id/genreGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/genderMale"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="M"
-            android:checked="true" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <RadioButton
-            android:id="@+id/genderFemale"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="F" />
-    </RadioGroup>
+            <!-- Name Field -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <EditText
+                    android:id="@+id/nameField"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="40dp"
+                    android:autofillHints=""
+                    android:hint="@string/last_name"
+                    android:inputType="textPersonName"
+                    android:background="@drawable/edittext_background"
+                    android:paddingStart="8dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints,RtlSymmetry" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_person"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/nameField"
+                    app:layout_constraintTop_toTopOf="@id/nameField"
+                    app:tint="#007FFF" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- Prenom Field -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <EditText
+                    android:id="@+id/prenomField"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="40dp"
+                    android:hint="First Name"
+                    android:inputType="textPersonName"
+                    android:background="@drawable/edittext_background"
+                    android:paddingStart="8dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_person"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/prenomField"
+                    app:layout_constraintTop_toTopOf="@id/prenomField"
+                    app:tint="#007FFF" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- Gender Selection Text -->
+            <TextView
+                android:id="@+id/genderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select your gender"
+                android:textSize="14sp"
+                android:textColor="#808080"
+                app:layout_constraintTop_toBottomOf="@id/ageField"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp" />
 
-    <!-- Numéro de téléphone -->
-    <EditText
-        android:id="@+id/phoneField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Numéro de téléphone"
-        android:inputType="phone" />
+            <!-- Gender Selection -->
+            <RadioGroup
+                android:id="@+id/genreGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:gravity="center">
 
-    <!-- Poste -->
-    <EditText
-        android:id="@+id/posteField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Poste"
-        android:inputType="text" />
+                <RadioButton
+                    android:id="@+id/genderMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:buttonTint="#007FFF" />
 
-    <!-- Mot de passe -->
-    <EditText
-        android:id="@+id/passwordField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Mot de passe"
-        android:inputType="textPassword" />
+                <RadioButton
+                    android:id="@+id/genderFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"
+                    android:layout_marginStart="16dp"
+                    android:buttonTint="#007FFF" />
+            </RadioGroup>
 
-    <!-- Bouton d'inscription -->
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="S'inscrire" />
-</LinearLayout>
+            <!-- Poste Field -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <EditText
+                    android:id="@+id/posteField"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="40dp"
+                    android:hint="Post"
+                    android:inputType="text"
+                    android:background="@drawable/edittext_background"
+                    android:paddingStart="8dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_work"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/posteField"
+                    app:layout_constraintTop_toTopOf="@id/posteField"
+                    app:tint="#007FFF" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Email Field -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <EditText
+                    android:id="@+id/emailField"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="40dp"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:background="@drawable/edittext_background"
+                    android:paddingStart="8dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_email"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/emailField"
+                    app:layout_constraintTop_toTopOf="@id/emailField"
+                    app:tint="#007FFF" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- CIN Field -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <EditText
+                    android:id="@+id/cinField"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="40dp"
+                    android:hint="CIN"
+                    android:inputType="number"
+                    android:background="@drawable/edittext_background"
+                    android:paddingStart="8dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_id_card"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/cinField"
+                    app:layout_constraintTop_toTopOf="@id/cinField"
+                    app:tint="#007FFF" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Phone Field -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <EditText
+                    android:id="@+id/phoneField"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="40dp"
+                    android:hint="Phone"
+                    android:inputType="phone"
+                    android:background="@drawable/edittext_background"
+                    android:paddingStart="8dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_phone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/phoneField"
+                    app:layout_constraintTop_toTopOf="@id/phoneField"
+                    app:tint="#007FFF" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Age Field -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <EditText
+                    android:id="@+id/ageField"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="40dp"
+                    android:hint="Age"
+                    android:inputType="number"
+                    android:background="@drawable/edittext_background"
+                    android:paddingStart="8dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_calendar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/ageField"
+                    app:layout_constraintTop_toTopOf="@id/ageField"
+                    app:tint="@color/forsignup" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Password Field -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <EditText
+                    android:id="@+id/passwordField"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="40dp"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:background="@drawable/edittext_background"
+                    android:paddingStart="8dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_password"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/passwordField"
+                    app:layout_constraintTop_toTopOf="@id/passwordField"
+                    app:tint="#007FFF" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/signUpButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Sign Up"
+                android:backgroundTint="#007FFF"
+                android:textColor="#FFFFFF"
+                android:padding="12dp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/errorText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="All fields are required."
+                android:textColor="#FF0000"
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
