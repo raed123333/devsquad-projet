@@ -31,6 +31,8 @@ public class Employee implements UserDetails {
  private int age;
  private String genre;
  private String numPhone;
+ private boolean etat;
+ private String icon;
  private String poste;
  private String password;
 

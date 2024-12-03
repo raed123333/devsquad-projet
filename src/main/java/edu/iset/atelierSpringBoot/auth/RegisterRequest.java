@@ -22,6 +22,8 @@ public class RegisterRequest {
     private String numPhone;
     private String poste;
     private String password;
+    private boolean etat;
+    private String icon;
     private Role role=Role.RH;
 
 
