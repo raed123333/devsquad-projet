@@ -1,5 +1,7 @@
 package isetb.tp5.checkinproapp.utils;
 
+import java.util.List;
+
 import isetb.tp5.checkinproapp.model.Employee;
 import isetb.tp5.checkinproapp.model.LoginRequest;
 import retrofit2.Call;
@@ -23,7 +25,8 @@ public interface ApiService {
     Call<Employee> loginEmployee(@Body LoginRequest loginRequest);
     @GET("Employee/{id}")
     Call<Employee> getEmployeeById(@Path("id") Long id);
-
+    @GET("/employees")
+    Call<List<Employee>> getAllEmployees();
     @DELETE("Employee/delete/{id}")
     Call<Void> deleteEmployee(@Path("id") Long id);
 }
