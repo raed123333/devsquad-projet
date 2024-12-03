@@ -17,7 +17,6 @@
         android:id="@+id/prenomField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autofillHints=""
         android:hint="@string/pr_nom"
         android:inputType="textPersonName" />
 
@@ -45,13 +44,26 @@
         android:hint="Âge"
         android:inputType="number" />
 
-    <!-- Genre -->
-    <EditText
-        android:id="@+id/genreField"
+    <!-- Genre (Radio buttons for F and M) -->
+    <RadioGroup
+        android:id="@+id/genreGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Genre"
-        android:inputType="text" />
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/genderMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/genderFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="F" />
+    </RadioGroup>
 
     <!-- Numéro de téléphone -->
     <EditText
@@ -76,14 +88,6 @@
         android:layout_height="wrap_content"
         android:hint="Mot de passe"
         android:inputType="textPassword" />
-
-    <!-- Icône (facultatif) -->
-    <EditText
-        android:id="@+id/iconField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Icône"
-        android:inputType="text" />
 
     <!-- Bouton d'inscription -->
     <Button

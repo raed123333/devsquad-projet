@@ -4,6 +4,7 @@ import isetb.tp5.checkinproapp.model.Employee;
 import isetb.tp5.checkinproapp.model.LoginRequest;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -15,10 +16,15 @@ public interface ApiService {
 
     @PUT("Employee/profile/{id}")
     Call<Employee> updateProfile(@Path("id") Long id, @Body Employee employee);
-    @POST("/Employee/register")
+    @POST("/auth/signup")
     Call<Employee> registerEmployee(@Body Employee employee);
 
-    @POST("Employee/login") // Ajouter un endpoint de connexion sur votre backend si nécessaire
+    @POST("auth/login")
     Call<Employee> loginEmployee(@Body LoginRequest loginRequest);
+    @GET("Employee/{id}")
+    Call<Employee> getEmployeeById(@Path("id") Long id);
+
+    @DELETE("Employee/delete/{id}")
+    Call<Void> deleteEmployee(@Path("id") Long id);
 }
 
