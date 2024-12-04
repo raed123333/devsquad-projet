@@ -36,6 +36,9 @@ public class Employee implements UserDetails {
  private String poste;
  private String password;
 
+
+
+
     @Enumerated(EnumType.STRING)
     private Role role;
 

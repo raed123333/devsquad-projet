@@ -13,5 +13,5 @@ public interface EmployeeService {
 Employee registerEmployee(Employee employee);
 Employee getProfile(Long id);
 Employee validateEmployee(Long id);
-
+Employee findEmployeeByEmail(String email);
 }

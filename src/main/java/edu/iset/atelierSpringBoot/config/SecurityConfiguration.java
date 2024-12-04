@@ -11,7 +11,12 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -37,12 +42,20 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-        public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("**")
-                    .allowedOrigins("http://localhost:5173")
-                    .allowedMethods("GET", "POST", "PUT", "DELETE")
-                    .allowedHeaders("Authorization", "Content-Type");
-        }
+    @Bean
+    public CorsFilter corsFilter() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:5173")); // Replace with your frontend URL
+        corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        corsConfiguration.setExposedHeaders(Arrays.asList("Authorization"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
+
+        return new CorsFilter(source);
+    }
 
 
 

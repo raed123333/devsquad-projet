@@ -3,6 +3,7 @@ package edu.iset.atelierSpringBoot.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import edu.iset.atelierSpringBoot.entites.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ import edu.iset.atelierSpringBoot.services.EmployeeService;
 
 @RestController
 @RequestMapping("/Employee")
-@CrossOrigin(origins = "http://localhost:5173")  // Enable CORS for frontend
+@CrossOrigin(origins = "http://localhost:5173")
 public class EmployeeController {
 
     @Autowired
@@ -30,11 +31,29 @@ public class EmployeeController {
     @Autowired
     private IEmployeeRepository employeeRepository;
 
-    // Get all employees
-    @GetMapping(path = "/getAllEmployees")
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
+    // Get all employees with role 'employe' and etat true
+    @GetMapping("/getAllEmployeeTrue")
+    public List<Employee> getAllEmployeeTrue() {
+        return employeeRepository.findByRoleAndEtat(Role.EMPLOYEE, true);
     }
+
+    // Get all employees with role 'employe' and etat false
+    @GetMapping("/getAllEmployeeFalse")
+    public List<Employee> getAllEmployeeFalse() {
+        return employeeRepository.findByRoleAndEtat(Role.EMPLOYEE, false);
+    }
+
+    // Get all employees with role 'RH'
+    @GetMapping("/getAllRh")
+    public List<Employee> getAllRh() {
+        return employeeRepository.findByRole(Role.RH);
+    }
+
+    @GetMapping("/getAllEMPLOYEE")
+    public List<Employee> getAllEMPLOYEE() {
+        return employeeRepository.findByRole(Role.EMPLOYEE);
+    }
+
 
     @PostMapping("/register")
     public ResponseEntity<Employee> registerEmployee(@RequestBody Employee employee) {
@@ -118,11 +137,17 @@ public class EmployeeController {
         Optional<Employee> employeeOpt = employeeRepository.findById(id);
         if (employeeOpt.isPresent()) {
             Employee employee = employeeOpt.get();
-            // Assuming you're adding some business logic here (e.g., setting an 'isValidated' flag)
-            // employee.setEtat(true); // Mark the employee as validated
             employeeRepository.save(employee);
             return ResponseEntity.ok(employee);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
+    @GetMapping("/test/{email}")
+    public ResponseEntity<Employee> findEmployeeByEmail(@PathVariable String email) {
+        Optional<Employee> employee = Optional.ofNullable(employeeService.findEmployeeByEmail(email));
+        return employee.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
+    }
+
+
 }
