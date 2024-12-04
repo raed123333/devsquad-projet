@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import isetb.tp5.checkinproapp.adapter.EmployeeAdapter;
+import isetb.tp5.checkinproapp.EmployeeAdapter;
 import isetb.tp5.checkinproapp.model.Employee;
 import isetb.tp5.checkinproapp.utils.ApiClient;
 import isetb.tp5.checkinproapp.utils.ApiService;
@@ -41,7 +41,6 @@ public class Admin extends AppCompatActivity {
         deleteButton.setOnClickListener(v -> deleteEmployee());
         fetchAllEmployees();
     }
-
     private void fetchAllEmployees() {
         ApiService apiService = ApiClient.getRetrofitInstance().create(ApiService.class);
         Call<List<Employee>> call = apiService.getAllEmployees();
@@ -56,14 +55,12 @@ public class Admin extends AppCompatActivity {
                     Toast.makeText(Admin.this, "Failed to retrieve data", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<List<Employee>> call, Throwable t) {
                 Toast.makeText(Admin.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
-
     private void fetchEmployeeById() {
         Long id = Long.parseLong(employeeIdField.getText().toString());
         ApiService apiService = ApiClient.getRetrofitInstance().create(ApiService.class);
@@ -86,7 +83,6 @@ public class Admin extends AppCompatActivity {
             }
         });
     }
-
     private void deleteEmployee() {
         Long id = Long.parseLong(employeeIdField.getText().toString());
         ApiService apiService = ApiClient.getRetrofitInstance().create(ApiService.class);
@@ -101,7 +97,6 @@ public class Admin extends AppCompatActivity {
                     Toast.makeText(Admin.this, "Failed to delete employee", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(Admin.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();

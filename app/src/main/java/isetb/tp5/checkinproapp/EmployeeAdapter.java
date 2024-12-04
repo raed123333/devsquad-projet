@@ -1,4 +1,4 @@
-package isetb.tp5.checkinproapp.adapter;
+package isetb.tp5.checkinproapp;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,6 @@ import java.util.List;
 
 import isetb.tp5.checkinproapp.R;
 import isetb.tp5.checkinproapp.model.Employee;
-
 public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder> {
 
     private List<Employee> employeeList;
@@ -34,6 +33,8 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
         holder.nameTextView.setText(employee.getNom() + " " + employee.getPrenom());
         holder.emailTextView.setText(employee.getEmail());
         holder.posteTextView.setText(employee.getPoste());
+        holder.ageTextView.setText("Age: " + employee.getAge());
+        holder.cinTextView.setText("CIN: " + employee.getCin());
     }
 
     @Override
@@ -42,13 +43,15 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
     }
 
     public static class EmployeeViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView, emailTextView, posteTextView;
+        TextView nameTextView, emailTextView, posteTextView, ageTextView, cinTextView;
 
         public EmployeeViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
             emailTextView = itemView.findViewById(R.id.emailTextView);
             posteTextView = itemView.findViewById(R.id.posteTextView);
+            ageTextView = itemView.findViewById(R.id.ageTextView);
+            cinTextView = itemView.findViewById(R.id.cinTextView);
         }
     }
 }
