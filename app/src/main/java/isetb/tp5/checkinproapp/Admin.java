@@ -1,5 +1,8 @@
 package isetb.tp5.checkinproapp;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import isetb.tp5.checkinproapp.EmployeeAdapter;
 import isetb.tp5.checkinproapp.model.Employee;
+import isetb.tp5.checkinproapp.model.LoginActivity;
+import isetb.tp5.checkinproapp.model.SharedPreferenceManager;
 import isetb.tp5.checkinproapp.utils.ApiClient;
 import isetb.tp5.checkinproapp.utils.ApiService;
 import retrofit2.Call;
@@ -24,7 +28,8 @@ public class Admin extends AppCompatActivity {
     private EmployeeAdapter employeeAdapter;
     private EditText employeeIdField;
     private Button fetchButton, deleteButton;
-
+    private Button btnLogout;
+    private SharedPreferenceManager preferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +45,28 @@ public class Admin extends AppCompatActivity {
         fetchButton.setOnClickListener(v -> fetchEmployeeById());
         deleteButton.setOnClickListener(v -> deleteEmployee());
         fetchAllEmployees();
+        btnLogout = findViewById(R.id.btn_logout);
+
+        btnLogout.setOnClickListener(v -> handleLogout());
+
+
     }
+    private void handleLogout() {
+        SharedPreferenceManager preferenceManager = new SharedPreferenceManager(this);
+        preferenceManager.clearLoginDetails();
+        preferenceManager.clearLoginDetails();
+
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
+        startActivity(intent);
+        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+    }
+
+
+
     private void fetchAllEmployees() {
         ApiService apiService = ApiClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<Employee>> call = apiService.getAllEmployees();
+        Call<List<Employee>> call = apiService.getAllEMPLOYEE();
         call.enqueue(new Callback<List<Employee>>() {
             @Override
             public void onResponse(Call<List<Employee>> call, Response<List<Employee>> response) {
@@ -55,12 +78,14 @@ public class Admin extends AppCompatActivity {
                     Toast.makeText(Admin.this, "Failed to retrieve data", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<List<Employee>> call, Throwable t) {
                 Toast.makeText(Admin.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     private void fetchEmployeeById() {
         Long id = Long.parseLong(employeeIdField.getText().toString());
         ApiService apiService = ApiClient.getRetrofitInstance().create(ApiService.class);
@@ -83,6 +108,7 @@ public class Admin extends AppCompatActivity {
             }
         });
     }
+
     private void deleteEmployee() {
         Long id = Long.parseLong(employeeIdField.getText().toString());
         ApiService apiService = ApiClient.getRetrofitInstance().create(ApiService.class);
@@ -97,6 +123,7 @@ public class Admin extends AppCompatActivity {
                     Toast.makeText(Admin.this, "Failed to delete employee", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(Admin.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();

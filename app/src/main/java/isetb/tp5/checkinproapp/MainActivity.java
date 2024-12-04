@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import isetb.tp5.checkinproapp.model.LoginActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

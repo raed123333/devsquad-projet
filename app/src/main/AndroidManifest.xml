@@ -28,7 +28,7 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".model.LoginActivity"
             android:exported="true">
 
             <!-- Intent filter for the launcher activity -->
