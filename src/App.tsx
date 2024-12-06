@@ -6,6 +6,8 @@ import Profile from './auth/Profile';
 import HRDashboard from './pages/hr/HRDashboard';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Register from './auth/Register';
+import ForgotPasswordPage from './pages/password/ForgotPasswordPage';
+import ResetPasswordPage from './pages/password/ResetPasswordPage';
 
 // PrivateRoute Component
 const PrivateRoute = ({ element, requiredRole }: { element: JSX.Element; requiredRole?: string }) => {
@@ -43,6 +45,8 @@ const App: React.FC = () => {
           path="/register"
           element={isAuthenticated ? <Navigate to="/" replace /> : <Register />}
         />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
   
         {/* Role-based home redirection */}
         <Route
@@ -69,7 +73,7 @@ const App: React.FC = () => {
         />
         <Route
           path="/profile"
-          element={<PrivateRoute element={<Profile />} requiredRole="EMPLOYEE" />}
+          element={<PrivateRoute element={<Profile />}  />}
         />
         <Route
           path="/rhdashboard"

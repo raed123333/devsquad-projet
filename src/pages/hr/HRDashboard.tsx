@@ -37,19 +37,21 @@ export default function HRDashboard() {
   // Handle request (accept/reject)
   const handleRequest = async (id: number, action: 'validate' | 'delete') => {
     try {
-      if (action == "validate" ) {
+      if (action === 'validate') {
+        // Send PUT request to validate the employee
         await api.put(`/Employee/validate/${id}`);
-      }else {
+        toast.success('Employee validated successfully');
+      } else if (action === 'delete') {
+        // Send DELETE request to remove the employee
         await api.delete(`/Employee/delete/${id}`);
+        toast.success('Employee deleted successfully');
       }
-
-      
-      toast.success('Registration request handled successfully');
-      // Refresh data
-      fetchEmployees();
-      fetchRegistrationRequests();
+  
+      // Refresh data after handling the request
+      await Promise.all([fetchEmployees(), fetchRegistrationRequests()]);
     } catch (error) {
-      toast.error('Failed to handle registration request');
+      console.error(error);
+      toast.error('Failed to handle the request. Please try again.');
     }
   };
 

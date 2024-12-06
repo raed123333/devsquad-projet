@@ -19,10 +19,10 @@ const Login = () => {
     try {
       const response = await api.post('/auth/login', data);
       if (login) {
-        login(response.data.token,response.data.role);
+        login(response.data.token, response.data.role);
       }
       navigate('/');
-    } catch (error:any) {
+    } catch (error: any) {
       if (error.response?.data?.message) {
         toast.error(error.response.data.message);
       } else {
@@ -57,14 +57,12 @@ const Login = () => {
                   },
                 })}
                 type="email"
-                aria-invalid={errors.email ? "true" : "false"}
+                aria-invalid={errors.email ? 'true' : 'false'}
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
               />
               {errors.email && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.email.message}
-                </p>
+                <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
               )}
             </div>
             <div>
@@ -80,15 +78,24 @@ const Login = () => {
                   },
                 })}
                 type="password"
-                aria-invalid={errors.password ? "true" : "false"}
+                aria-invalid={errors.password ? 'true' : 'false'}
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
               />
               {errors.password && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.password.message}
-                </p>
+                <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
               )}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="text-sm">
+              <Link
+                to="/forgot-password"
+                className="font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                Forgot your password?
+              </Link>
             </div>
           </div>
 
