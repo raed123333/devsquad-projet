@@ -133,15 +133,14 @@ public class EmployeeController {
 
     // Validate employee (mark as validated)
     @PutMapping("/validate/{id}")
-    public ResponseEntity<Employee> validateEmployee(@PathVariable Long id) {
-        Optional<Employee> employeeOpt = employeeRepository.findById(id);
-        if (employeeOpt.isPresent()) {
-            Employee employee = employeeOpt.get();
-            employeeRepository.save(employee);
-            return ResponseEntity.ok(employee);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    public Employee validateEmployee(Long id) {
+        return employeeRepository.findById(id)
+                .map(employee -> {
+                    employee.setEtat(true); // Uncomment if you want to set the status
+                    return employeeRepository.save(employee);
+                }).orElseThrow(() -> new RuntimeException("Employee not found with ID: " + id));
     }
+
     @GetMapping("/test/{email}")
     public ResponseEntity<Employee> findEmployeeByEmail(@PathVariable String email) {
         Optional<Employee> employee = Optional.ofNullable(employeeService.findEmployeeByEmail(email));
