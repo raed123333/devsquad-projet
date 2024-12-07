@@ -1,0 +1,98 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node.js
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Ignore application properties file
+src/main/resources/application.properties
+
+# Maven build directory
+target/
+
+# Gradle build directory
+build/
+
+# JAR/WAR files (generated during build)
+*.jar
+*.war
+
+# IDE-specific files
+.idea/
+*.iml
+out/
+
+# Eclipse/STS configuration files
+.project
+.classpath
+.factorypath
+.settings/
+
+# NetBeans IDE files
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code workspace settings
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+*.tmp
+
+# Temporary files
+*.bak
+
+# Spring Boot Config Files (if sensitive)
+src/main/resources/application.properties
+src/main/resources/application.yml
+
+# Maven Wrapper files
+!.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Exclude files created by other build systems
+*.swp
+
+# Additional mobile-specific files
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
