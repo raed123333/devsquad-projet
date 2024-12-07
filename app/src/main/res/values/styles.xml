@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Définir un thème global -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Style personnalisé pour les boutons -->
+    <style name="CustomButton">
+
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+</resources>
